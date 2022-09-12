@@ -1,0 +1,114 @@
+Binary Tree
+===========
+Each node can have at max "2" children (known as "left" and "right" child).
+
+Applications Of Trees
+=====================
+1. Storing data in hierarchical form. 
+2. Make information easy to search (quicker than Linked List and slower than arrays). 
+3. Manipulate sorted lists of data.
+4. Router algorithms.
+
+Basic Terminologies
+===================
+                        1
+                       / \
+                      /   \
+                     2     3
+                    / \   / \
+                   4   5 6   7
+                      /     / \
+                     /     /   \
+                    8     9    10
+
+Node: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10" are nodes of the tree.
+
+Root: Topmost node of the tree that has no parent.
+      "1" is the root of the tree.
+
+Edge: Edge acts as a link between the parent node and the child node.
+
+Leaf: Node that has no child.
+      "4, 8, 9, 10" are leaf nodes.
+
+Sibling: Nodes share the same parent node.
+      "4, 5" are siblings.
+
+Ancestor: For node 8 "5, 2, 1" are ancestors.
+
+Depth of a node: Number of edges present in path from the root node to that node.
+
+Height of a node: Number of edges present in the longest path connecting that node to a leaf node.
+
+
+Types of Binary Trees
+=====================
+1. Full Binary Tree: Every node has 0 ot 2 children.
+
+                        1
+                       / \
+                      /   \
+                     2     3
+                          / \
+                         6   7
+            
+2. Complete Binary Tree: All levels are completely filled except the last level.
+                         The last level has all nodes as left as possible.
+
+                        1
+                       / \
+                      /   \
+                     2     3
+                    /
+                   4   
+
+3. Perfect Binary Tree: All leaf nodes are at same level.
+
+                        1
+                       / \
+                      /   \
+                     2     3
+                    / \   / \
+                   4   5 6   7
+
+4. Balanced Binary Tree: Difference between the height of left and rigth subtree should not be graeter than 1.
+
+                        1
+                       / \
+                      /   \
+                     2     3
+                    / \
+                   4   5
+
+5. Degenerate Binary Tree: Every internal node has only one child.
+
+                        1
+                       /
+                      2
+                       \
+                        3
+                       /
+                      4
+
+
+Binary Tree Node Representation
+===============================
+
+|------------------------------------------------------|
+|                    |           |                     |
+| left child address | node data | rigth child address |
+|                    |           |                     |
+|------------------------------------------------------|
+
+# C++ representation of a node
+class Node {
+    int val;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        this->val = val;
+        this->left = nullptr;
+        this->right = nullptr;
+    }
+}
