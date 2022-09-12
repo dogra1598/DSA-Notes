@@ -101,12 +101,12 @@ Binary Tree Node Representation
 |------------------------------------------------------|
 
 # C++ representation of a node
-class Node {
+class TreeNode {
     int val;
-    Node* left;
-    Node* right;
+    TreeNode* left;
+    TreeNode* right;
 
-    Node(int val) {
+    TreeNode(int val) {
         this->val = val;
         this->left = nullptr;
         this->right = nullptr;
@@ -115,6 +115,8 @@ class Node {
 
 DFS Traversals
 ==============
+use recursion
+
 1. Inorder:
    LEFT, ROOT, RIGHT
 
@@ -124,3 +126,7 @@ DFS Traversals
 3. Postorder
    LEFT, RIGHT, ROOT
 
+
+BFS Traversal or Level Order Traversal
+======================================
+maintain a queue
