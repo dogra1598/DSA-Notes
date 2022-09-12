@@ -23,6 +23,10 @@ class TreeNode {
 */
 void insertNode(TreeNode*& root, int data) {
     TreeNode* newNode = new TreeNode(data);
+    if(!newNode) {
+        cout << "Memory Error\n";
+        return;
+    }
 
     if (!root) {
         root = newNode;
