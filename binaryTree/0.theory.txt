@@ -111,4 +111,16 @@ class Node {
         this->left = nullptr;
         this->right = nullptr;
     }
-}
+};
+
+DFS Traversals
+==============
+1. Inorder:
+   LEFT, ROOT, RIGHT
+
+2. Preorder:
+   ROOT, LEFT, RIGHT
+
+3. Postorder
+   LEFT, RIGHT, ROOT
+
