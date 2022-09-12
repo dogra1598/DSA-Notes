@@ -93,6 +93,31 @@ void postorderTraversal(TreeNode* root) {
     cout << root->data << " ";
 }
 
+
+/*
+    Level Order Traversal
+    { maintain a queue }
+    TC: O(n), n = no. of nodes
+*/
+void levelOrderTraversal(TreeNode* root) {
+    if(!root)
+        return;
+
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()) {
+        TreeNode* currNode = q.front();
+        cout << currNode->data << " ";
+        q.pop();
+
+        if(currNode->left)
+            q.push(currNode->left);
+
+        if(currNode->right)
+            q.push(currNode->right);
+    }
+}
+
 int main() {
     TreeNode* root = nullptr;
 
@@ -112,6 +137,10 @@ int main() {
 
     cout << "Postorder Traversal: ";
     postorderTraversal(root);
+    cout << "\n";
+
+    cout << "Levelorder Traversal: ";
+    levelOrderTraversal(root);
     cout << "\n";
 
     return 0;
