@@ -169,3 +169,10 @@ use recursion
 BFS Traversal or Level Order Traversal
 ======================================
 maintain a queue
+(for more details check code of leve order traversal 1.basicOperations.cpp)
+
+
+Diameter of a binary tree
+=========================
+Length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+(The length of a path between two nodes is represented by the "number of edges" between them)
