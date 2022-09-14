@@ -37,10 +37,45 @@ Sibling: Nodes share the same parent node.
 Ancestor: For node 8 "5, 2, 1" are ancestors.
 
 Depth of a node: Number of edges present in path from the root node to that node.
-(here depth starts from 0, if nodes are considered instead of edges then depth starts from 1)
+(here depth starts from 0(i.e depth of root node is 0), if nodes are considered instead of edges then depth starts from 1)
+
+                        1
+                       / \
+                      /   \
+                     2     3
+                    / \   / \
+                   4   5 6   7
+                      /     / \
+                     /     /   \
+                    8     9    10
+
+Node           Depth
+====           =====
+1              0
+2, 3           1
+4, 5, 6, 7     2
+8, 9, 10       3
+
 
 Height of a node: Number of edges present in the longest path connecting that node to a leaf node.
-(here height starts from 0, if nodes are considered instead of edges then height starts from 1)
+(here height starts from 0 (i.e height of a leaf node is 0), if nodes are considered instead of edges then height starts from 1)
+
+                        1
+                       / \
+                      /   \
+                     2     3
+                    / \   / \
+                   4   5 6   7
+                      /     / \
+                     /     /   \
+                    8     9    10
+
+Node                 Height
+====                 =====
+4, 6, 8, 9, 10       0
+5, 7                 1
+2, 3                 2
+1                    3
 
 ** Note: check for the definition of heigth and depth int the given question.
 
