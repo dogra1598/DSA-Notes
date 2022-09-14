@@ -48,6 +48,9 @@ int diameterOfBinaryTree1(TreeNode* root) {
 
 //////////////////////////////////////////////////////////////////////////////
 
+/*
+    we are adding 2 for the left and the right edge of the current node
+*/
 int diameterOfBinaryTree2(TreeNode* root, int& diameter) {
     if (!root) {
         diameter = 0;
