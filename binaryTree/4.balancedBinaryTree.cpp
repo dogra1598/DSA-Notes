@@ -1,13 +1,13 @@
 #include "binaryTreeGeneration.h"
 
 /*
-    Property of balanced binary tree:
+    Condition for balanced binary tree:
     =================================
     abs(height of left subtree - height of right subtree) <= 1, for every node
 
     ALGO1:
     ======
-    For each node find height of left subtree and right subtree and check the condition
+    For each node find, height of left subtree and right subtree and check the condition
     TC: O(n^2), n is no. of nodes
     (calculating height will take O(n) and we are doing this operation for every node)
 
@@ -29,7 +29,7 @@ int calHeight(TreeNode* root) {
     return 1 + max(leftSubTreeHeight, rightSubTreeHeight);
 }
 
-bool isBalancedBinaryTree(TreeNode* root) {
+bool isBalancedBinaryTree1(TreeNode* root) {
     if (!root)
         return true;
 
@@ -39,8 +39,8 @@ bool isBalancedBinaryTree(TreeNode* root) {
     if (abs(leftHeight - rightHeight) > 1)
         return false;
 
-    bool isBalancedLeftBinaryTree = isBalancedBinaryTree(root->left);
-    bool isBalancedRightBinaryTree = isBalancedBinaryTree(root->right);
+    bool isBalancedLeftBinaryTree = isBalancedBinaryTree1(root->left);
+    bool isBalancedRightBinaryTree = isBalancedBinaryTree1(root->right);
 
     return isBalancedLeftBinaryTree && isBalancedRightBinaryTree;
 }
@@ -50,12 +50,12 @@ bool isBalancedBinaryTree(TreeNode* root) {
 /*
     return -2 because leaf nodes will return -1, we cannot check based on -1 height condition
 */
-int checkBalancedBinaryTree(TreeNode* root) {
+int isBalancedBinaryTree2(TreeNode* root) {
     if (!root)
         return -1;
 
-    int leftSubtreeHeight = checkBalancedBinaryTree(root->left);
-    int rigthSubTreeHeight = checkBalancedBinaryTree(root->right);
+    int leftSubtreeHeight = isBalancedBinaryTree2(root->left);
+    int rigthSubTreeHeight = isBalancedBinaryTree2(root->right);
 
     if (leftSubtreeHeight == -2 || rigthSubTreeHeight == -2)
         return -2;
@@ -80,15 +80,15 @@ int main() {
     // root->right->right->right = new TreeNode(7);
     // root->right->right->right->right = new TreeNode(8);
 
-    // if (isBalancedBinaryTree(root))
-    //     cout << "Binary tree is balanced\n";
-    // else
-    //     cout << "Binary tree is not balanced\n";
-
-    if (checkBalancedBinaryTree(root) == -2)
-        cout << "Binary tree is not balanced\n";
+    if (isBalancedBinaryTree1(root))
+        cout << "Binary tree is balanced (using algo1)\n";
     else
-        cout << "Binary tree is balanced\n";
+        cout << "Binary tree is not balanced (using algo1)\n";
+
+    if (isBalancedBinaryTree2(root) == -2)
+        cout << "Binary tree is not balanced (using algo2)\n";
+    else
+        cout << "Binary tree is balanced (using algo2)\n";
 
     return 0;
 }
