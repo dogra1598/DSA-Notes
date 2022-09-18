@@ -1,5 +1,6 @@
 Binary Tree
 ===========
+Non-linear data structure.
 Each node can have at max "2" children (known as "left" and "right" child).
 
 Applications Of Trees
@@ -21,17 +22,22 @@ Basic Terminologies
                      /     /   \
                     8     9    10
 
-Node: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10" are nodes of the tree.
+Node: Any element of the tree. 
+      "1, 2, 3, 4, 5, 6, 7, 8, 9, 10" are nodes of the tree.
 
 Root: Topmost node of the tree that has no parent.
       "1" is the root of the tree.
 
 Edge: Edge acts as a link between the parent node and the child node.
 
+Parent: "2" is the parent of "4, 5".
+
+Child: "4" is the child of "2".
+
 Leaf: Node that has no child.
       "4, 8, 9, 10" are leaf nodes.
 
-Sibling: Nodes share the same parent node.
+Sibling: Nodes having same parent node.
       "4, 5" are siblings.
 
 Ancestor: For node 8 "5, 2, 1" are ancestors.
@@ -132,7 +138,6 @@ Types of Binary Trees
 
 Binary Tree Node Representation
 ===============================
-
 |------------------------------------------------------|
 |                    |           |                     |
 | left child address | node data | rigth child address |
