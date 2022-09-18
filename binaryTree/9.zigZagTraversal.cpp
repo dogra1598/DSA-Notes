@@ -1,6 +1,8 @@
 /*
     Zig Zag Traversal
     =================
+    print level order but in zig zag manner
+
     Input:
             1
            / \
