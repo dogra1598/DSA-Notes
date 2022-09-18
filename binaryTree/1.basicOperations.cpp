@@ -56,11 +56,6 @@ void insertNode(TreeNode*& root, int data) {
 }
 
 /*
-    Deletion code for a node
-
-*/
-
-/*
     Inorder Traversal of binary tree
     { LEFT, ROOT, RIGHT }
     TC: O(n), n = no. of nodes

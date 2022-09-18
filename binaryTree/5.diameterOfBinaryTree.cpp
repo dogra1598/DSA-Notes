@@ -21,6 +21,12 @@
     directly use the heights
     TC: O(n), n is no. of nodes
     SC: O(h), h is height of binary tree
+
+    ALGO2:
+    ======
+    Maintain a pair of {diameter, height}
+    TC: O(n), n is no. of nodes
+    SC: O(h), h is height of binary tree
 */
 
 int calHeight(TreeNode* root) {
@@ -33,15 +39,15 @@ int calHeight(TreeNode* root) {
     return 1 + max(leftSubTreeHeight, rightSubTreeHeight);
 }
 
-int diameterOfBinaryTree1(TreeNode* root) {
+int diameterOfBinaryTreeUsingHeight(TreeNode* root) {
     if (!root)
         return 0;
 
     int leftSubtreeHeight = calHeight(root->left);
     int rightSubtreeHeight = calHeight(root->right);
 
-    int leftSubtreeDiameter = diameterOfBinaryTree1(root->left);
-    int rightSubtreeDiameter = diameterOfBinaryTree1(root->right);
+    int leftSubtreeDiameter = diameterOfBinaryTreeUsingHeight(root->left);
+    int rightSubtreeDiameter = diameterOfBinaryTreeUsingHeight(root->right);
 
     return max(max(leftSubtreeDiameter, rightSubtreeDiameter), leftSubtreeHeight + rightSubtreeHeight + 2);
 }
@@ -49,34 +55,66 @@ int diameterOfBinaryTree1(TreeNode* root) {
 //////////////////////////////////////////////////////////////////////////////
 
 /*
-    we are adding 2 for the left and the right edge of the current node
+    ** we are adding 2 for the left and the right edge of the current node
 */
-int diameterOfBinaryTree2(TreeNode* root, int& diameter) {
+int diameterOfBinaryTreeUsingHeightDirectly(TreeNode* root, int& diameter) {
     if (!root) {
         diameter = 0;
         return -1;
     }
 
-    int leftSubtreeHeight = diameterOfBinaryTree2(root->left, diameter);
-    int rightSubtreeHeight = diameterOfBinaryTree2(root->right, diameter);
+    int leftSubtreeHeight = diameterOfBinaryTreeUsingHeightDirectly(root->left, diameter);
+    int rightSubtreeHeight = diameterOfBinaryTreeUsingHeightDirectly(root->right, diameter);
 
     diameter = max(diameter, leftSubtreeHeight + rightSubtreeHeight + 2);
 
     return 1 + max(leftSubtreeHeight, rightSubtreeHeight);
 }
 
+///////////////////////////////////////////////////////////////////////////
+
+/*
+    better approach than algo 2
+    maintain a pair of {diameter, height}
+
+    ** we are adding 2 for the left and the right edge of the current node 
+*/
+pair<int, int> diameterOfBinaryTreeUsingPairHelper(TreeNode* root) {
+    if (!root) {
+        pair<int, int> temp = {0, -1};
+        return temp;
+    }
+
+    pair<int, int> leftPair = diameterOfBinaryTreeUsingPairHelper(root->left);
+    pair<int, int> rightPair = diameterOfBinaryTreeUsingPairHelper(root->right);
+
+    pair<int, int> resPair;
+    int leftDiameter = leftPair.first;
+    int rightDiameter = rightPair.first;
+    int currHeight = leftPair.second + rightPair.second + 2;
+
+    resPair.first = max(currHeight, max(leftDiameter, rightDiameter));
+    resPair.second = max(leftPair.second, rightPair.second) + 1;
+
+    return resPair;
+}
+
+int diameterOfBinaryTreeUsingPair(TreeNode* root) {
+    return diameterOfBinaryTreeUsingPairHelper(root).first;
+}
+
 int main() {
     TreeNode* root = nullptr;
 
     // diameter is passing through root
-    // insertNode(root, 1);
-    // insertNode(root, 2);
-    // insertNode(root, 3);
-    // root->left->left = new TreeNode(4);
-    // root->left->left->left = new TreeNode(5);
-    // root->right->right = new TreeNode(6);
-    // root->right->right->right = new TreeNode(7);
-    // root->right->right->right->right = new TreeNode(8);
+    insertNode(root, 1);
+    insertNode(root, 2);
+    insertNode(root, 3);
+    root->left->left = new TreeNode(4);
+    root->left->left->left = new TreeNode(5);
+    root->right->right = new TreeNode(6);
+    root->right->right->right = new TreeNode(7);
+    root->right->right->right->right = new TreeNode(8);
 
     // diameter is in left subtree of root node
     // insertNode(root, 1);
@@ -89,22 +127,25 @@ int main() {
     // root->left->right->right->right->right = new TreeNode(8);
 
     // diameter is in right subtree of root node
-    insertNode(root, 1);
-    insertNode(root, 2);
-    insertNode(root, 3);
-    root->right->left = new TreeNode(4);
-    root->right->left->left = new TreeNode(5);
-    root->right->left->left->left = new TreeNode(6);
-    root->right->right = new TreeNode(7);
-    root->right->right->right = new TreeNode(8);
-    root->right->right->right->right = new TreeNode(9);
+    // insertNode(root, 1);
+    // insertNode(root, 2);
+    // insertNode(root, 3);
+    // root->right->left = new TreeNode(4);
+    // root->right->left->left = new TreeNode(5);
+    // root->right->left->left->left = new TreeNode(6);
+    // root->right->right = new TreeNode(7);
+    // root->right->right->right = new TreeNode(8);
+    // root->right->right->right->right = new TreeNode(9);
 
     cout << "Diameter (using algo1): ";
-    cout << diameterOfBinaryTree1(root) << "\n";
+    cout << diameterOfBinaryTreeUsingHeight(root) << "\n";
 
     int diameter = INT_MIN;
-    diameterOfBinaryTree2(root, diameter);
+    diameterOfBinaryTreeUsingHeightDirectly(root, diameter);
     cout << "Diameter (using algo2): " << diameter << "\n";
+
+    cout << "Diameter (using algo3): ";
+    cout << diameterOfBinaryTreeUsingPair(root) << "\n";
 
     return 0;
 }
