@@ -28,35 +28,37 @@
 */
 
 bool isSameTree(TreeNode *root1, TreeNode *root2) {
-  if (!root1 || !root2) return root1 == root2;
+    if (!root1 || !root2)
+        return root1 == root2;
 
-  if (root1->data != root2->data) return false;
+    if (root1->data != root2->data)
+        return false;
 
-  bool isLeftSubtreeSame = isSameTree(root1->left, root2->left);
-  bool isRightSubtreeSame = isSameTree(root1->right, root2->right);
+    bool isLeftSubtreeSame = isSameTree(root1->left, root2->left);
+    bool isRightSubtreeSame = isSameTree(root1->right, root2->right);
 
-  return isLeftSubtreeSame && isRightSubtreeSame;
+    return isLeftSubtreeSame && isRightSubtreeSame;
 }
 
 int main() {
-  TreeNode *root1 = nullptr;
-  insertNode(root1, 1);
-  insertNode(root1, 2);
-  insertNode(root1, 3);
-  insertNode(root1, 4);
-  insertNode(root1, 5);
-  insertNode(root1, 6);
+    TreeNode *root1 = nullptr;
+    insertNode(root1, 1);
+    insertNode(root1, 2);
+    insertNode(root1, 3);
+    insertNode(root1, 4);
+    insertNode(root1, 5);
+    insertNode(root1, 6);
 
-  TreeNode *root2 = nullptr;
-  insertNode(root2, 1);
-  insertNode(root2, 2);
-  insertNode(root2, 3);
-  insertNode(root2, 4);
-  insertNode(root2, 5);
-  insertNode(root2, 6);
+    TreeNode *root2 = nullptr;
+    insertNode(root2, 1);
+    insertNode(root2, 2);
+    insertNode(root2, 3);
+    insertNode(root2, 4);
+    insertNode(root2, 5);
+    insertNode(root2, 6);
 
-  cout << "Are the given binary trees are same: ";
-  cout << isSameTree(root1, root2) << "\n";
+    cout << "Are the given binary trees are same: ";
+    cout << isSameTree(root1, root2) << "\n";
 
-  return 0;
+    return 0;
 }

@@ -10,7 +10,7 @@
 */
 
 int heightOfBinaryTree(TreeNode* root) {
-    if(!root)
+    if (!root)
         return -1;
 
     int leftSubTreeHeight = heightOfBinaryTree(root->left);

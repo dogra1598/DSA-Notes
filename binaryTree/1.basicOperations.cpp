@@ -23,7 +23,7 @@ class TreeNode {
 */
 void insertNode(TreeNode*& root, int data) {
     TreeNode* newNode = new TreeNode(data);
-    if(!newNode) {
+    if (!newNode) {
         cout << "Memory Error\n";
         return;
     }
@@ -57,7 +57,7 @@ void insertNode(TreeNode*& root, int data) {
 
 /*
     Deletion code for a node
-    
+
 */
 
 /*
@@ -102,28 +102,36 @@ void postorderTraversal(TreeNode* root) {
     cout << root->data << " ";
 }
 
-
 /*
     Level Order Traversal
     { maintain a queue }
     TC: O(n), n = no. of nodes
+
+    ** Note see elements accoring to level
+       1. push null pointer after root
+       2. then check if cuurNode in queue is null pointer print new line
+            -- if queue is not empty then push null pointer into queue
+    ** the logic can also be used where we need to store levels separately
 */
 void levelOrderTraversal(TreeNode* root) {
-    if(!root)
+    if (!root)
         return;
 
     queue<TreeNode*> q;
     q.push(root);
-    while(!q.empty()) {
+    q.push(nullptr);
+    while (!q.empty()) {
         TreeNode* currNode = q.front();
-        cout << currNode->data << " ";
         q.pop();
 
-        if(currNode->left)
-            q.push(currNode->left);
-
-        if(currNode->right)
-            q.push(currNode->right);
+        if (!currNode) {
+            cout << "\n";
+            if (!q.empty()) q.push(nullptr);
+        } else {
+            cout << currNode->data << " ";
+            if (currNode->left) q.push(currNode->left);
+            if (currNode->right) q.push(currNode->right);
+        }
     }
 }
 
@@ -135,6 +143,7 @@ int main() {
     insertNode(root, 3);
     insertNode(root, 4);
     insertNode(root, 5);
+    insertNode(root, 6);
 
     cout << "Inorder Traversal: ";
     inorderTraversal(root);
@@ -148,7 +157,7 @@ int main() {
     postorderTraversal(root);
     cout << "\n";
 
-    cout << "Levelorder Traversal: ";
+    cout << "Levelorder Traversal:\n";
     levelOrderTraversal(root);
     cout << "\n";
 
