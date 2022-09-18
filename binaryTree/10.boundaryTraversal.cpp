@@ -1,30 +1,41 @@
 /*
     Boundary Traversal
     ==================
-    Given a Binary Tree, find its Boundary Traversal. The traversal should be in the following order: 
+    Given a Binary Tree, find its Boundary Traversal. The traversal should be in the following order:
 
-    Left boundary nodes: defined as the path from the root to the left-most node ie- the leaf node you could reach when you 
-                         always travel preferring the left subtree over the right subtree. 
+    Left boundary nodes: defined as the path from the root to the left-most node ie- the leaf node you could reach when you
+                         always travel preferring the left subtree over the right subtree.
 
     Leaf nodes: All the leaf nodes except for the ones that are part of left or right boundary.
 
-    Reverse right boundary nodes: defined as the path from the right-most node to the root. The right-most node is the leaf 
-                                  node you could reach when you always travel preferring the right subtree over the left subtree. 
+    Reverse right boundary nodes: defined as the path from the right-most node to the root. The right-most node is the leaf
+                                  node you could reach when you always travel preferring the right subtree over the left subtree.
                                   Exclude the root from this as it was already included in the traversal of left boundary nodes.
 
-    Note: If the root doesn't have a left subtree or right subtree, then the root itself is the left or right boundary. 
+    Note: If the root doesn't have a left subtree or right subtree, then the root itself is the left or right boundary.
 
     Ex:
     Input:
-            1 
+            1
           /   \
-         2     3  
-        / \   / \ 
+         2     3
+        / \   / \
        4   5 6   7
       / \
      8   9
-   
+
     Output: 1 2 4 8 9 6 7 3
+
+    ALGO
+    ====
+    1. first push the root value .
+    2. traverse left subtree for left boundary
+    3. traverse left subtree for leaf nodes in left subtree
+    4. traverse right subtree for leaf nodoes in right subtree
+    5. traverse rigth subtree for right boundary
+
+    TC: O(n), n = no. of nodes
+    SC: O(h), h = height of the tree
 */
 
 #include <vector>
