@@ -14,9 +14,12 @@
 
     ALGO
     ====
-    1. if any of the root is null
-        -- return OR of both roots
+    1. if both of the roots are null
+        -- return true
+       if !root1 && root2 OR root1 && !root2
+        -- return false
     2. now compare the both roots value
+        -- if not same return false
     3. recur both tree to left
        recur both tree to right
        return AND of both the recurrence.
@@ -28,8 +31,11 @@
 */
 
 bool isSameTree(TreeNode *root1, TreeNode *root2) {
-    if (!root1 || !root2)
-        return root1 == root2;
+    if (!root1 && !root2)
+        return true;
+    
+    if ((!root1 && root2) || (root1 && !root2))
+        return false;
 
     if (root1->data != root2->data)
         return false;

@@ -78,6 +78,7 @@ int diameterOfBinaryTreeUsingHeightDirectly(TreeNode* root, int& diameter) {
     maintain a pair of {diameter, height}
 
     ** we are adding 2 for the left and the right edge of the current node 
+    (i.e this is for the diameter passing through current node)
 */
 pair<int, int> diameterOfBinaryTreeUsingPairHelper(TreeNode* root) {
     if (!root) {
