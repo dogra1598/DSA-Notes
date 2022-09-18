@@ -1,7 +1,7 @@
 #include "binaryTreeGeneration.h"
 
 /*
-    For a binary tree  value of depth and heigth are same.
+    For a binary tree value of depth and heigth are same.
     Here considering leaf nodes are at height 0;
 
     ALGO:
