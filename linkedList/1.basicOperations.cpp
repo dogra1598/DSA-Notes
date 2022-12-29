@@ -38,14 +38,14 @@ void insertNode(ListNode*& head, int data, int position) {
         return;
     }
 
-    // insert at other posiition
+    // insert at other position
     ListNode* currNode = head;
     while (currNode && currNode->next && position > 1) {
         currNode = currNode->next;
         position--;
     }
 
-    // gievn position is greater than linked list length
+    // given position is greater than linked list length
     if (position > 1) {
         currNode->next = newNode;
         return;
@@ -82,6 +82,39 @@ void deleteNodeByValue(ListNode*& head, int searchVal) {
     cout << "Can't perform delete operation, given search value '" << searchVal << "' does not exists in the list\n";
 }
 
+void deleteNodeByPosition(ListNode*& head, int position) {
+    if (!head) {
+        cout << "Can't perform delete operation, list is empty!\n";
+        return;
+    }
+
+    // delete node from the beginning
+    if (position == 0) {
+        ListNode* temp = head;
+        head = head->next;
+        delete (temp);
+        return;
+    }
+
+    // delete node from other position
+    ListNode* currNode = head;
+    while (currNode && currNode->next && position > 1) {
+        currNode = currNode->next;
+        position--;
+    }
+
+    // given position is greater than linked list length
+    if (position >= 1) {
+        cout << "Can't perform delete operation, given position is greater than the length of the linked list\n";
+        return;
+    }
+
+    ListNode* temp = currNode->next;
+    currNode->next = temp->next;
+    delete (temp);
+    return;
+}
+
 void printList(ListNode* head) {
     while (head) {
         cout << head->data << " ";
@@ -107,9 +140,18 @@ int main() {
     cout << "List after insertion: ";
     printList(head);
 
-    deleteNodeByValue(head, 6);
-    deleteNodeByValue(head, 9);
-    deleteNodeByValue(head, 15);
+    // deleteNodeByValue(head, 8);
+    // deleteNodeByValue(head, 6);
+    // deleteNodeByValue(head, 9);
+    // deleteNodeByValue(head, 15);
+    // cout << "List after deletion: ";
+    // printList(head);
+
+    // deleteNodeByPosition(head, 6);
+    // deleteNodeByPosition(head, 0);
+    // deleteNodeByPosition(head, 11);
+    // deleteNodeByPosition(head, 8);
+    // deleteNodeByPosition(head, 11);
     cout << "List after deletion: ";
     printList(head);
 
