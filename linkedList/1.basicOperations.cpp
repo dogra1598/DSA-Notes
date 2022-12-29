@@ -55,11 +55,39 @@ void insertNode(ListNode*& head, int data, int position) {
     currNode->next = newNode;
 }
 
+void deleteNodeByValue(ListNode*& head, int searchVal) {
+    if (!head) {
+        cout << "Can't perform delete operation, list is empty!\n";
+        return;
+    }
+
+    if (head->data == searchVal) {
+        ListNode* temp = head;
+        head = head->next;
+        delete (temp);
+        return;
+    }
+
+    ListNode* currNode = head;
+    while (currNode && currNode->next) {
+        if (currNode->next->data == searchVal) {
+            ListNode* temp = currNode->next;
+            currNode->next = temp->next;
+            delete (temp);
+            return;
+        }
+        currNode = currNode->next;
+    }
+
+    cout << "Can't perform delete operation, given search value '" << searchVal << "' does not exists in the list\n";
+}
+
 void printList(ListNode* head) {
     while (head) {
         cout << head->data << " ";
         head = head->next;
     }
+    cout << "\n";
 }
 
 int main() {
@@ -76,7 +104,13 @@ int main() {
     insertNode(head, 9, 7);
     insertNode(head, 10, 10);
     insertNode(head, 11, 10);
+    cout << "List after insertion: ";
+    printList(head);
 
+    deleteNodeByValue(head, 6);
+    deleteNodeByValue(head, 9);
+    deleteNodeByValue(head, 15);
+    cout << "List after deletion: ";
     printList(head);
 
     return 0;
