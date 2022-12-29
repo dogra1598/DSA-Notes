@@ -1,0 +1,84 @@
+Linked List
+===========
+linear data structure that represents a sequence of nodes.
+nodes are not stored at a contiguous location, nodes are linked using pointers
+
+Node
+====
+node is a collection of two parts
+    -- data part
+    -- pointer part
+
+    |---------------------|
+    | data | next Pointer |
+    |---------------------|
+
+
+Advantages
+==========
+no need to define the size
+ease of insertion/deletion
+
+Disadvantages
+=============
+random access is not allowed
+extra memory space for pointers is required
+searching for an element will take O(no. of nodes)
+
+
+Types of linked list
+====================
+
+1. Singly linked list
+==================
+
+    |-------|    |-------|    |-------|    |-------|
+    | 1 | --|--->| 2 | --|--->| 3 | --|--->| 4 | --|---> X
+    |-------|    |-------| |  |-------|    |-------|     |
+        |                  |                             |
+        |---> head         |---> next pointer            |---> nullptr
+
+
+2. Doubly linked list
+=====================
+contains next and prev pointers
+can be traversed in both direction
+
+                               |----> next pointer
+                               |
+                |-----------|  |  |-----------|     |-----------|
+                |   |   | --|---->|   |   | --|---->|   |   | --|----> nullptr
+                |   | 1 |   |     |   | 2 |   |     |   | 3 |   |
+      NULL <----|-- |   |   |<----|-- |   |   |<----|-- |   |   |
+                |-----------|  |  |-----------|     |-----------|
+                     |         |
+                     |         |----> prev pointer
+                     |
+                     |----> head
+
+
+3. Circular linked list
+=======================
+last node next points to the head node
+
+        |-------|    |-------|    |-------|    |-------|
+    |-->| 1 | --|--->| 2 | --|--->| 3 | --|--->| 4 | --|---|
+    |   |-------|    |-------|    |-------|    |-------|   |
+    |                                                      |
+    |------------------------------------------------------|
+
+
+4. Doubly circular linked list
+==============================
+last node next points to the head node
+first node prev points to the last node
+
+           |---------------------------------------------------------|
+           |                                                         |
+           |    |-----------|     |-----------|     |-----------|    |
+           |--->|   |   | --|---->|   |   | --|---->|   |   | --|----|
+                |   | 1 |   |     |   | 2 |   |     |   | 3 |   |
+           |----|-- |   |   |<----|-- |   |   |<----|-- |   |   |<---|
+           |    |-----------|     |-----------|     |-----------|    |
+           |                                                         |
+           |---------------------------------------------------------|
