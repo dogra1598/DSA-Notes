@@ -1,6 +1,23 @@
+/*
+    Singly Linked List
+    ==================
+    operations performed:
+        -- insertion:
+            -- at any posiiton
+               TC of insertion at beginning is O(1)
+               TC of insertiona at other position is O(n), n = no. of nodes
+        -- deletion
+            -- by value
+               TC of deletion by value is O(n)
+            -- by position
+               TC of deleteion at the beginning is O(1)
+               TC of deleteion at other posiiton id O(n)
+*/
+
 #include <iostream>
 using namespace std;
 
+// node structure
 class ListNode {
    public:
     int data;
@@ -13,6 +30,8 @@ class ListNode {
     }
 };
 
+// ====================================================================================================================
+// function to calculate length of the linked list
 int countNode(ListNode* head) {
     int cnt = 0;
     while (head) {
@@ -23,6 +42,8 @@ int countNode(ListNode* head) {
     return cnt;
 }
 
+// ====================================================================================================================
+// function to insert value in the list at any position
 void insertNode(ListNode*& head, int data, int position) {
     ListNode* newNode = new ListNode(data);
 
@@ -55,6 +76,8 @@ void insertNode(ListNode*& head, int data, int position) {
     currNode->next = newNode;
 }
 
+// ====================================================================================================================
+// function to delete node in the list by value
 void deleteNodeByValue(ListNode*& head, int searchVal) {
     if (!head) {
         cout << "Can't perform delete operation, list is empty!\n";
@@ -82,6 +105,8 @@ void deleteNodeByValue(ListNode*& head, int searchVal) {
     cout << "Can't perform delete operation, given search value '" << searchVal << "' does not exists in the list\n";
 }
 
+// ====================================================================================================================
+// function to delete node in the list by position
 void deleteNodeByPosition(ListNode*& head, int position) {
     if (!head) {
         cout << "Can't perform delete operation, list is empty!\n";
@@ -115,6 +140,8 @@ void deleteNodeByPosition(ListNode*& head, int position) {
     return;
 }
 
+// ====================================================================================================================
+// function to print linked list
 void printList(ListNode* head) {
     while (head) {
         cout << head->data << " ";
@@ -151,7 +178,7 @@ int main() {
     // deleteNodeByPosition(head, 0);
     // deleteNodeByPosition(head, 11);
     // deleteNodeByPosition(head, 8);
-    // deleteNodeByPosition(head, 11);
+    deleteNodeByPosition(head, 11);
     cout << "List after deletion: ";
     printList(head);
 
